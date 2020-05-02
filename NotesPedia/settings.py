@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -76,14 +77,12 @@ WSGI_APPLICATION = 'NotesPedia.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'Notespedia',
         'USER': 'oswalgopal',
         'PASSWORD': 'oswalgopal25052000',
         'HOST': 'oswalgopal-database.cmhbhrlpytbe.ap-south-1.rds.amazonaws.com',
         'PORT': '5432'
-        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
