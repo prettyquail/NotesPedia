@@ -8,6 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 @csrf_exempt
 def showUser(request):
+    # todo: to be removed when we are done with user login and register
     if request.method == 'GET':
         user = User.objects.all()
         serializer = userSerializer(user, many=True)
@@ -23,7 +24,11 @@ def showUser(request):
                 'message': 'User Registered Successfully',
                 'status': 201
             }, status=201)
-        return JsonResponse(serializer.errors, status=400)
+        return JsonResponse({
+            "response": serializer.errors,
+            "message": 'Registration failed',
+            "status": 400
+        }, status=400)
 
 @csrf_exempt
 def login(request):
@@ -42,7 +47,7 @@ def login(request):
             return JsonResponse({
                     "response": [],
                     "message": 'Invalid Email or Password',
-                    "status": 200
-                },safe = False, status=200)
+                    "status": 404
+                },safe = False, status=404)
 
 

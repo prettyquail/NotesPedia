@@ -2,10 +2,13 @@ from django.db import models
 from rest_framework import serializers
 # Create your models here.
 class User(models.Model):
-    username = models.CharField(max_length=64)
-    email = models.EmailField(max_length=64)
+    user_id = models.AutoField(primary_key=True)
+    username = models.CharField(
+        max_length=64, unique=True)
+    email = models.EmailField(
+        max_length=64, unique=True)
     password = models.CharField(max_length=128)
-    mobile = models.CharField(max_length=10)
+    mobile = models.CharField(max_length=10, unique=True)
     createDate = models.DateField(auto_now_add=True)
 
     def __str__(self):
