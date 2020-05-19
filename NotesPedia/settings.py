@@ -25,7 +25,7 @@ SECRET_KEY = '$)fobk*mwfq!fe3@@3+*j3l@(70rw*l_$=27(l)ku4u!@k%oa5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['notespedia.herokuapp.com', 'http://127.0.0.1']
 
 
 # Application definition
