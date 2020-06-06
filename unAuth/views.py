@@ -2,21 +2,24 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from rest_framework.parsers import  JSONParser
 from .models import User
-from .serialzer import userSerializer
+from .serialzer import registerSerializer, showUserSerializer, userSerializer
 from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 @csrf_exempt
-def showUser(request):
+def registerUser(request):
     # todo: to be removed when we are done with user login and register
     if request.method == 'GET':
-        user = User.objects.all()
-        serializer = userSerializer(user, many=True)
-        return JsonResponse(serializer.data, safe = False, status=200)
+#         user = User.objects.all()
+          user = User.objects.values_list('name')
+          print(user)
+#         serializer = showUserSerializer(user, many=True)
+#         return JsonResponse(serializer.data, safe = False, status=200)
+          return user
 
     elif request.method == 'POST':
         data = JSONParser().parse(request)
-        serializer = userSerializer(data=data)
+        serializer = registerSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
             return JsonResponse({
@@ -36,18 +39,18 @@ def login(request):
         data = JSONParser().parse(request)
         userdata = User.objects.filter(email=data['email'], password=data['password'])
         serializer = userSerializer(userdata, many=True)
-        print(serializer.data)
         if len(serializer.data) > 0:
             return JsonResponse({
-                    "response": serializer.data,
-                    "message": 'Login success',
-                    "status": 200
-                },safe = False, status=200)
-        else: 
+                            "response": serializer.data,
+                            "message": 'Login success',
+                            "status": 200
+                        },safe = False, status=200)
+        else:
             return JsonResponse({
-                    "response": [],
-                    "message": 'Invalid Email or Password',
-                    "status": 404
-                },safe = False, status=404)
+                            "response": [],
+                            "message": 'Invalid Email or Password',
+                            "status": 404
+                        },safe = False, status=404)
 
+        
 
