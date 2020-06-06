@@ -11,6 +11,6 @@ class User(models.Model):
     mobile = models.CharField(max_length=10, unique=True)
     createDate = models.DateField(auto_now_add=True)
 
-    def __str__(self):
-        return f"{self.username} -- {self.email} -- {self.mobile}"
+    # def __str__(self):
+    #     return f"{self.name} -- {self.email} -- {self.mobile}"
 

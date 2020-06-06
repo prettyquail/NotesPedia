@@ -15,3 +15,12 @@ class Access(models.Model):
     accessId = models.AutoField(primary_key=True)
     userId = models.ForeignKey(User, on_delete=models.CASCADE)
     documentId = models.ForeignKey(Document, on_delete=models.CASCADE)
+
+class Notification(models.Model):
+    notification_id = models.AutoField(primary_key=True)
+    userId = models.CharField(max_length=50)
+    notificationLabel = models.CharField(max_length=256)
+    notificationBy = models.ForeignKey(User, on_delete=models.CASCADE)
+    noificationType = models.CharField(max_length=10)
+    document_id = models.ForeignKey(Document, on_delete=models.CASCADE)
+    createDate = models.DateField(auto_now_add=True)
