@@ -85,3 +85,30 @@ def getNotifications(request, id):
 #                 'status': 200
 #             }, status=200)
 
+@csrf_exempt
+def wantAccess(request, userId, documentId):
+    if request.method == 'GET':
+        user = User.objects.get(user_id=userId)
+        document = Document.objects.get(document_id=documentId)
+        user2 = User.objects.get(user_id=document.ownerId.user_id)
+        access = Access(userId=user, documentId=document)
+        notification = Notification(userId=user2.user_id, notificationLabel=f"{user.name} granted access for {document.name}", notificationBy=user,noificationType="Asked", document_id=document)
+        notification.save()
+        return JsonResponse({
+                'response': '',
+                'message': 'asked access Successfully',
+                'status': 200
+            }, status=200)
+
+@csrf_exempt
+def myDocuments(request, id):
+    print(id)
+    if request.method == 'GET':
+        document = Document.objects.filter(ownerId=id)
+        serializer = showDocumentSerializer(document, many=True)
+        return JsonResponse({
+                'response': serializer.data,
+                'message': 'Documents got successfully',
+                'status': 200
+            }, status=200)
+

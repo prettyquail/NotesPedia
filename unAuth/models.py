@@ -8,7 +8,7 @@ class User(models.Model):
     email = models.EmailField(
         max_length=64, unique=True)
     password = models.CharField(max_length=128)
-    mobile = models.CharField(max_length=10, unique=True)
+    mobile = models.CharField(max_length=10)
     createDate = models.DateField(auto_now_add=True)
 
     # def __str__(self):
