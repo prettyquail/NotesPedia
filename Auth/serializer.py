@@ -11,6 +11,11 @@ class showDocumentSerializer(serializers.ModelSerializer):
         model = Document
         fields = ['document_id','name', 'url', 'year' ,'semester', 'accessType', 'ownerId', 'createDate']
 
+class showPrivateDocumentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Document
+        fields = ['document_id','name', 'year' ,'semester', 'accessType', 'ownerId', 'createDate']
+
 class showNotificationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Notification
