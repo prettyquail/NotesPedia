@@ -115,11 +115,10 @@ def sendOTP(request,email):
 
 
 @api_view(['POST','PUT',])
-def PasswordUpdate(request,email):
-    user =User.objects.get(email=email)
-    serializer=UserSerializer(data=request.data)
+def PasswordUpdate(request):
+    data=request.data
+    user = User.objects.get(email=data['email'])
     if user:
-        data=serializer.data
         user.password = data['newpassword']
         user.save()
         return Response("Sucessfully Updated",status=HTTP_200_OK)

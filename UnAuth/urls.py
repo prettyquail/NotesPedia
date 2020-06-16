@@ -8,5 +8,6 @@ urlpatterns = [
     path('login/',Login.as_view(), name="login"),
       path('otp/<str:email>', views.sendOTP, name="otp"),
       path('forgotpass/',views.PasswordUpdate, name="forgotpass"),
+     
 
    ]
