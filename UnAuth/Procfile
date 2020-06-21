@@ -1,1 +1,1 @@
-web: gunicorn Notespedia.wsgi
+web: gunicorn Notespedia.wsgi --preload
