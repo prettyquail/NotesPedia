@@ -13,4 +13,6 @@ urlpatterns = [
 	path('profileupdate/<str:pk>/', views.ProfileUpdate, name="profileupdate"),
 	path('checkaccess/<str:pk>/<str:docid>/', views.CheckAccess, name="check"),
 	path('grantaccess/<str:pk>/<str:docid>/', views.GrantAccess, name="grant"),
+	path('wantaccess/<str:pk>/<str:docid>/', views.wantAccess, name="want"),
+	path('notifications/<str:pk>/', views.notifications, name="notifications"),
 ]

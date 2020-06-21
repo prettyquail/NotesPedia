@@ -64,41 +64,10 @@ class Login(generics.GenericAPIView):
 
 
 
-"""@api_view(['GET'])
-def sendOTP(request,pk):
-    user=User.objects.get(user_id=pk)
-    email=user.email
-    subject='OTP'
-    otp=random.randint(1111, 9999)
-    html_message = render_to_string('UnAuth/otp.html', {'otp': otp})
-    plain_message = strip_tags(html_message)
-    rep_list=[email]
-    send_mail(subject,plain_message,settings.EMAIL_HOST_USER,rep_list)
-    return Response(otp, status=HTTP_200_OK)"""
-
-
-
-"""@api_view(['POST'])
+@api_view(['POST'])
 def sendOTP(request):
-    serializer_class = UserSerializer(data=request.data)
-    if serializer_class.is_valid(raise_exception=True):
-        data=serializer_class.data
-        user=data.get('email')
-        if user:
-            email=user
-            subject='OTP'
-            otp=random.randint(1111, 9999)
-            html_message = render_to_string('UnAuth/otp.html', {'otp': otp})
-            plain_message = strip_tags(html_message)
-            rep_list=[email]
-            send_mail(subject,plain_message,settings.EMAIL_HOST_USER,rep_list)
-            return Response(otp, status=HTTP_200_OK)"""
-
-
-
-@api_view(['GET'])
-def sendOTP(request,email):
-    user=User.objects.get(email=email)
+    data=request.data
+    user = User.objects.get(email=data['email'])
     if user:
         email=user.email
         subject='OTP'
@@ -114,12 +83,12 @@ def sendOTP(request,email):
 
 
 
+
 @api_view(['POST','PUT',])
-def PasswordUpdate(request,email):
-    user =User.objects.get(email=email)
-    serializer=UserSerializer(data=request.data)
+def PasswordUpdate(request):
+    data=request.data
+    user = User.objects.get(email=data['email'])
     if user:
-        data=serializer.data
         user.password = data['newpassword']
         user.save()
         return Response("Sucessfully Updated",status=HTTP_200_OK)

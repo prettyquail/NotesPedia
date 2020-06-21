@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Document,Access
+from .models import Document,Access,Notification
 
 class DocumentSerializer(serializers.ModelSerializer):
 
@@ -20,4 +20,10 @@ class PrivateDocumentSerializer(serializers.ModelSerializer):
 class grantAccessSerializer(serializers.ModelSerializer):
 	class Meta():
 		model = Access
+		fields = ('__all__')
+
+
+class NotificationSerializer(serializers.ModelSerializer):
+	class Meta():
+		model = Notification
 		fields = ('__all__')
