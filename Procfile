@@ -1,0 +1,1 @@
+web: gunicorn NOTESPEDIA.wsgi --log-file -
