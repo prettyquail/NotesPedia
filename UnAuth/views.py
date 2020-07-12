@@ -15,7 +15,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 
 class Register(generics.ListCreateAPIView):
-    queryset = User.objects.all()
+    queryset = ""
     serializer_class = UserSerializer
 
     def post(self, request, *args, **kwargs):
@@ -45,7 +45,7 @@ class Register(generics.ListCreateAPIView):
 class Login(generics.GenericAPIView):
     # get method handler
   
-    queryset = User.objects.all()
+    queryset = ""
     serializer_class = UserLoginSerializer
 
     def post(self, request, *args, **kwargs):
