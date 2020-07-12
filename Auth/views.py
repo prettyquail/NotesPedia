@@ -132,3 +132,9 @@ def notifications(request, pk):
 	notifications = Notification.objects.get(notification_id=pk)
 	serializer = NotificationSerializer(notifications, many=False)
 	return Response(serializer.data)
+
+@api_view(['DELETE'])
+def Rejectnotifications(request, pk):
+	notifications = Notification.objects.get(notification_id=pk)
+	notifications.delete()
+	return Response("Rejected")
