@@ -15,4 +15,5 @@ urlpatterns = [
 	path('grantaccess/<str:pk>/<str:docid>/', views.GrantAccess, name="grant"),
 	path('wantaccess/<str:pk>/<str:docid>/', views.wantAccess, name="want"),
 	path('notifications/<str:pk>/', views.notifications, name="notifications"),
+        path('deleteNotification/<str:id>', views.deleteNotification, name="delete-notification")
 ]

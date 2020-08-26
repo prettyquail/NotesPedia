@@ -60,7 +60,7 @@ class UserLoginSerializer(serializers.ModelSerializer):
         user.token = data['token']
         user.save()
     
-        return data
+        return user
 
 
     class Meta:

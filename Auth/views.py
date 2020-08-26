@@ -50,8 +50,8 @@ def DocumentList(request):
 
 @api_view(['GET'])
 def MyDocuments(request, pk):
-	documents = Document.objects.get(document_ownerid=pk)
-	serializer = DocumentSerializer(documents, many=False)
+	documents = Document.objects.filter(document_ownerid=pk)
+	serializer = DocumentSerializer(documents, many=True)
 	return Response(serializer.data)
 
 
@@ -73,6 +73,11 @@ def DocumentDelete(request, pk):
 
 	return Response('Item succsesfully delete!')
 
+@api_view(['DELETE'])
+def deleteNotification(request, id):
+    notification = Notification.objects.get(notification_id=id)
+    notification.delete()
+    return Response("Deleted successfully")
 
 
 @api_view(['GET'])
@@ -84,7 +89,7 @@ def MyProfile(request, pk):
 
 @api_view(['POST','PUT',])
 def ProfileUpdate(request, pk):
-	details = User.objects.get(user_id=pk)
+	details = User.objects.gett(user_id=pk)
 	serializer =UserSerializer(instance=details, data=request.data)
 
 	if serializer.is_valid():
@@ -129,6 +134,6 @@ def wantAccess(request,pk,docid):
 
 @api_view(['GET'])
 def notifications(request, pk):
-	notifications = Notification.objects.get(notification_id=pk)
-	serializer = NotificationSerializer(notifications, many=False)
+	notifications = Notification.objects.filter(user_id=pk)
+	serializer = NotificationSerializer(notifications, many=True)
 	return Response(serializer.data)

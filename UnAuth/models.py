@@ -6,6 +6,6 @@ class User(models.Model):
 	email=models.EmailField()
 	username=models.CharField(max_length=55,blank=False)
 	password=models.CharField(max_length=55,blank=False)
-	phoneno = models.IntegerField(max_length=10,blank=True)
+	phoneno = models.IntegerField(blank=True)
 	about=models.CharField(max_length=20,blank=True)
 	create_date=models.DateTimeField(auto_now_add=True)
